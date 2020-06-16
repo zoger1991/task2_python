@@ -26,7 +26,6 @@ jreq['from'] = from_date
 jreq['to'] = to_date
 
 
-print(jreq)
 geturl = "https://%s/data/reportData?apiKey=%s&reportId=weightingReport" % (site, api)
 headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
 r = requests.post(geturl, data=json.dumps(jreq), headers=headers)
@@ -42,7 +41,7 @@ for i in r.json()['data']:
         if not os.path.isdir(imagelist[3]):
             os.mkdir(imagelist[3])
             print("Dir created: " + imagelist[3])
-        os.system("wget " +"-q " + "http://mirror.infobis.ru/" + image + " -P " + imagelist[3] + "/")
+        os.system("wget -q http://%s/%s -P %s/" % (site, image, imagelist[3]))
         print("Downloaded: " + imagelist[4])
 
 os.system('for i in */; do zip -r "${i%/}.zip" "$i"; done')
