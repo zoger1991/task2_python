@@ -44,6 +44,6 @@ for i in r.json()['data']:
         os.system("wget -q http://%s/%s -P %s/" % (site, image, imagelist[3]))
         print("Downloaded: " + imagelist[4])
 
-os.system('for i in */; do zip -r "${i%/}.zip" "$i"; done')
-os.system('for i in */; do rm -rf "${i%/}" "$i"; done')
+os.system('for i in */; do zip -r "${i%/}.zip" "$i"; done && for i in */; do rm -rf "${i%/}" "$i"; done')
+
 
